@@ -1,0 +1,6 @@
+Flask>=2.2.0
+Werkzeug>=2.2.0
+yt-dlp>=2023.10.07
+openai-whisper==20230314
+ffmpeg-python==0.2.0
+pybind11>=2.12

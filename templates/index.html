@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Processor</title>
+</head>
+<body>
+    <h1>Video Processor</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <p>
+            <label>YouTube URL:</label><br>
+            <input type="text" name="youtube_url" placeholder="https://youtu.be/...">
+        </p>
+        
+        <p>
+            <label>Or Upload Local Video:</label><br>
+            <input type="file" name="local_file" accept="video/*">
+        </p>
+
+        <p>
+            <label>Start Time (sec):</label><br>
+            <input type="text" name="start_time" value="0">
+        </p>
+
+        <p>
+            <label>End Time (sec):</label><br>
+            <input type="text" name="end_time" value="0">
+            <small>(Set 0 if not trimming)</small>
+        </p>
+
+        <!-- Optional: Keep your existing checkbox or remove it if you rely on the dropdown. -->
+        <!-- <input type="checkbox" name="add_bottom_video"> Add bottom1.mp4? -->
+
+        <p>
+            <label>Select Bottom Video:</label><br>
+            <select name="bottom_video_choice">
+                <option value="">No Bottom Video</option> <!-- Means no stacking -->
+                {% for vid in bottom_videos %}
+                    <option value="{{ vid }}">{{ vid }}</option>
+                {% endfor %}
+            </select>
+        </p>
+
+        <p>
+            <input type="checkbox" name="do_zoom"> Make Vertical Zoom version?
+        </p>
+
+        <p>
+            <input type="checkbox" name="chunk"> Split into 60s chunks?
+        </p>
+
+        <p>
+            <button type="submit">Process</button>
+        </p>
+    </form>
+</body>
+</html>
