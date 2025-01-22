@@ -1,56 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Processor</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Video Processor</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <p>
-            <label>YouTube URL:</label><br>
-            <input type="text" name="youtube_url" placeholder="https://youtu.be/...">
-        </p>
-        
-        <p>
-            <label>Or Upload Local Video:</label><br>
-            <input type="file" name="local_file" accept="video/*">
-        </p>
+<body class="bg-light">
 
-        <p>
-            <label>Start Time (sec):</label><br>
-            <input type="text" name="start_time" value="0">
-        </p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Video Processor</a>
+        </div>
+    </nav>
 
-        <p>
-            <label>End Time (sec):</label><br>
-            <input type="text" name="end_time" value="0">
-            <small>(Set 0 if not trimming)</small>
-        </p>
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="card-title mb-0">Process Your Video</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
 
-        <!-- Optional: Keep your existing checkbox or remove it if you rely on the dropdown. -->
-        <!-- <input type="checkbox" name="add_bottom_video"> Add bottom1.mp4? -->
+                            <!-- YouTube URL -->
+                            <div class="mb-3">
+                                <label for="youtube_url" class="form-label">YouTube URL:</label>
+                                <input type="text" name="youtube_url" id="youtube_url" class="form-control" placeholder="https://youtu.be/...">
+                            </div>
 
-        <p>
-            <label>Select Bottom Video:</label><br>
-            <select name="bottom_video_choice">
-                <option value="">No Bottom Video</option> <!-- Means no stacking -->
-                {% for vid in bottom_videos %}
-                    <option value="{{ vid }}">{{ vid }}</option>
-                {% endfor %}
-            </select>
-        </p>
+                            <!-- Local File Upload -->
+                            <div class="mb-3">
+                                <label for="local_file" class="form-label">Upload Local Video:</label>
+                                <input type="file" name="local_file" id="local_file" class="form-control" accept="video/*">
+                            </div>
 
-        <p>
-            <input type="checkbox" name="do_zoom"> Make Vertical Zoom version?
-        </p>
+                            <!-- Start Time -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="start_time" class="form-label">Start Time (sec):</label>
+                                    <input type="text" name="start_time" id="start_time" class="form-control" value="0">
+                                </div>
+                                <!-- End Time -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="end_time" class="form-label">End Time (sec):</label>
+                                    <input type="text" name="end_time" id="end_time" class="form-control" value="0">
+                                    <small class="text-muted">(Set 0 if not trimming)</small>
+                                </div>
+                            </div>
 
-        <p>
-            <input type="checkbox" name="chunk"> Split into 60s chunks?
-        </p>
+                            <!-- Bottom Video Dropdown -->
+                            <div class="mb-3">
+                                <label for="bottom_video_choice" class="form-label">Select Bottom Video:</label>
+                                <select name="bottom_video_choice" id="bottom_video_choice" class="form-select">
+                                    <option value="">No Bottom Video</option>
+                                    {% for vid in bottom_videos %}
+                                        <option value="{{ vid }}">{{ vid }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
 
-        <p>
-            <button type="submit">Process</button>
-        </p>
-    </form>
+                            <!-- Options -->
+                            <div class="form-check mb-3">
+                                <input type="checkbox" name="do_zoom" id="do_zoom" class="form-check-input">
+                                <label for="do_zoom" class="form-check-label">Make Vertical Zoom version?</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="checkbox" name="chunk" id="chunk" class="form-check-input">
+                                <label for="chunk" class="form-check-label">Split into 60s chunks?</label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Process Video</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5 mb-3">
+        <p class="text-muted">&copy; 2025 Video Processor</p>
+    </footer>
+
+    <!-- Bootstrap JS (Optional for interactive components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

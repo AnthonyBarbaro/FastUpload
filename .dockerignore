@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
 *.pyo
+*.log
+temp/
+output/
+uploads/
+videos/
 .env
-.git
-.DS_Store
