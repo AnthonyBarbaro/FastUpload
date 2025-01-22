@@ -46,7 +46,7 @@ def stack_vertical(ffmpeg_path, top_video, bottom_video, output_video):
         "-i", bottom_video,
         "-filter_complex",
         "[0:v]scale=1920:-1[v0];[1:v]scale=1920:-1[v1];[v0][v1]vstack=inputs=2",
-        "-c:v", "libx264",
+        "-c:v", "h264_nvenc",
         "-c:a", "aac",
         output_video
     ]
@@ -104,7 +104,7 @@ def create_vertical_zoom(ffmpeg_path, input_video, output_video):
         "-y",
         "-i", input_video,
         "-filter_complex", filter_graph,
-        "-c:v", "libx264",
+        "-c:v", "h264_nvenc",
         "-r", "30",
         "-c:a", "aac",
         output_video

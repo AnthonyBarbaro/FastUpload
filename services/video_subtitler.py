@@ -93,7 +93,7 @@ def burn_subtitles(ffmpeg_path, input_video, srt_file, output_video):
         "-y",
         "-i", input_video,
         "-vf", f"subtitles={srt_file}:force_style='FontSize=24,Outline=2,Shadow=1,MarginV=50'",
-        "-c:v", "libx264",
+        "-c:v", "h264_nvenc",
         "-c:a", "aac",
         output_video
     ]

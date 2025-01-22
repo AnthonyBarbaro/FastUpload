@@ -1,6 +1,6 @@
 # Use a lightweight Python base image
 FROM python:3.9-slim
-
+FROM nvidia/cuda:12.0-base
 # Install necessary system packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg \
